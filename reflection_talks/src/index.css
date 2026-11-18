@@ -1,0 +1,246 @@
+:root {
+  /* Paletă preluată din site-ul original (Canva) */
+  --brown: #4a2b1f;
+  --brown-deep: #3a2118;
+  --brown-ink: #492d23;
+  --rose: #ce9f8b;
+  --rose-soft: #dcb5a4;
+  --clay: #87553f;
+  --clay-light: #a4705c;
+  --cream: #efe3b8;
+  --cream-soft: #f7efd6;
+  --sand: #b9a291;
+
+  --radius-sm: 6px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+
+  --container: 1160px;
+  --section-pad: clamp(72px, 10vw, 136px);
+  --header-h: 72px;
+  --gutter: clamp(20px, 4vw, 40px);
+
+  --font-display: 'Cormorant', 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Cormorant Garamond', Georgia, serif;
+  --font-ui: 'DM Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 19px;
+  line-height: 1.65;
+  color: var(--cream);
+  background: var(--brown);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Grain discret, ca textura de hârtie */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 400;
+  line-height: 1.1;
+  color: var(--fg-strong, inherit);
+}
+
+p {
+  margin: 0;
+}
+
+figure {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent, var(--cream));
+  outline-offset: 3px;
+}
+
+::selection {
+  background: var(--cream);
+  color: var(--brown);
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* ---------- Tonuri de secțiune ---------- */
+
+.tone--brown {
+  --bg: var(--brown);
+  --fg: #e6d8c6;
+  --fg-strong: var(--cream);
+  --fg-muted: var(--sand);
+  --accent: var(--cream);
+  --line: rgba(239, 227, 184, 0.22);
+  --card: rgba(239, 227, 184, 0.05);
+  --btn-bg: var(--cream);
+  --btn-fg: var(--brown);
+}
+
+.tone--rose {
+  --bg: var(--rose);
+  --fg: var(--brown-ink);
+  --fg-strong: var(--brown-deep);
+  --fg-muted: #6b4434;
+  --accent: var(--brown);
+  --line: rgba(73, 45, 35, 0.25);
+  --card: rgba(247, 239, 214, 0.35);
+  --btn-bg: var(--brown);
+  --btn-fg: var(--cream);
+}
+
+.tone--clay {
+  --bg: var(--clay);
+  --fg: #f1e6d2;
+  --fg-strong: var(--cream);
+  --fg-muted: #e0c9b3;
+  --accent: var(--cream);
+  --line: rgba(239, 227, 184, 0.3);
+  --card: rgba(58, 33, 24, 0.22);
+  --btn-bg: var(--cream);
+  --btn-fg: var(--brown);
+}
+
+[class*='tone--'] {
+  background: var(--bg);
+  color: var(--fg);
+}
+
+/* ---------- Butoane ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 52px;
+  padding: 0 28px;
+  border: 1.5px solid transparent;
+  border-radius: 999px;
+  font-family: var(--font-ui);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition:
+    background 0.3s var(--ease),
+    color 0.3s var(--ease),
+    border-color 0.3s var(--ease),
+    transform 0.3s var(--ease);
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn--sm {
+  min-height: 42px;
+  padding: 0 20px;
+  font-size: 12px;
+}
+
+.btn--solid {
+  background: var(--btn-bg, var(--cream));
+  color: var(--btn-fg, var(--brown));
+}
+
+.btn--solid:hover {
+  background: transparent;
+  color: var(--accent, var(--cream));
+  border-color: var(--accent, var(--cream));
+}
+
+.btn--outline {
+  border-color: var(--line);
+  color: var(--fg-strong);
+}
+
+.btn--outline:hover {
+  border-color: var(--accent);
+}
+
+.btn--cream {
+  background: var(--cream);
+  color: var(--brown);
+}
+
+.btn--cream:hover {
+  background: var(--cream-soft);
+}
+
+/* ---------- Animații la scroll ---------- */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.9s var(--ease),
+    transform 0.9s var(--ease);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .spiral--spin {
+    animation: none !important;
+  }
+}
